@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Centered Growing Div</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+body, html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centered-div {
+  width: 100vw;
+  height: 100vh;
+  /* max-width: 800px; */
+  /* padding: 20px; */
+  background-color: lightgray;
+  animation: grow 3s forwards; /* 3s is the duration of the animation, adjust as needed */
+}
+
+@keyframes grow {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+</style>
+
+<body>
+  <div class="centered-div">
+    <!-- Your content here -->
+    <p>This is a centered div that grows to fill up the screen.</p>
+  </div>
+</body>
+</html>
