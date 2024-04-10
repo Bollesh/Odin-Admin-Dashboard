@@ -6,8 +6,6 @@
 
 :root{
     --bodyColor: rgb(20,20,20);
-    --topLeadPos: 368%;
-    --topNonLeadPos: 300%;
 }
 
 body{
@@ -34,35 +32,28 @@ h1, h2, h3, h4, h5, h6, p, ul, li{
     justify-content: center;
     align-items: center;
     gap: 40px;
-    /* scale: 10; */
-    /* animation: mainGrow 4s;
-    animation-delay: 2.2s; */
-    transition: scale 4s;
+    transition: transform 2s, scale 2s;
 }
 
 .card{
-    height: 200px;
-    width: 350px;
     flex: 1;
-    /* height: 100vh; */
-    /* width: 100vw; */
     background-color: white;
     transition: transform 1s;
-    /* transition: transform 1s cubic-bezier(.8,0,0.6,1); */
-    /* animation: mainGrow 3s; */
-    scale: 1;
 }
 
 .main{
     background-image: url("images/jr-korpa-9XngoIpxcEo-unsplash.jpg");
-    background-size: cover;
+    background-size: 200% auto;
     background-repeat: no-repeat;
-    filter: blur(2px);
+    background-position: center;
+    image-rendering: optimizeQuality;
+    animation: mainGrow 2s;
+    animation-delay: 3.9s;
+    animation-fill-mode: forwards; 
 }
 
 .col{
     flex: 1;
-    /* height: 120vh; */
     aspect-ratio: 1/3;
     display: flex;
     flex-direction: column;
@@ -77,32 +68,17 @@ h1, h2, h3, h4, h5, h6, p, ul, li{
     transform: translateY(100%);
 }
 
-/* .col.two{
-    transform: translateY(-100%);
-} */
-
-/* .col.three{
-    transform: translateY(-10%);
-} */
-
-/* .animationCont{
-    animation-delay: 10s;
-    animation: cardGrow 3s;
+.blur{
+    animation: blur 0.5s forwards;
 }
 
-@keyframes cardGrow{
-    to{
-        height: 100vh;
-        width: 100vw;
-    }
-} */
-
-/* .main{
-    animation: mainGrow 3s;
-} */
-
 @keyframes mainGrow{
-    to{
-        scale: 6;
+    0%{
+        background-size: 200% auto;
+        filter: blur(0);
+    }
+    100%{
+        background-size: 120% auto;
+        filter: blur(0.5px);
     }
 }

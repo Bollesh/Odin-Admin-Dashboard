@@ -4,19 +4,20 @@ let cardsInTwo = document.querySelectorAll('.two>.card');
 let cardsInThree = document.querySelectorAll('.three>.card');
 let cardsInFour = document.querySelectorAll('.four>.card');
 let cardsInFive = document.querySelectorAll('.five>.card');
+let evencards = document.querySelectorAll('.two, .four');
 let oddcards = document.querySelectorAll('.one, .three, .five')
-// let windowHeight = innerHeight;
+let windowHeight = innerHeight;
+let contHeight = document.querySelector('.col').offsetHeight;
 let mainCard = document.querySelector('.main');
+let mainCardHeight = mainCard.offsetHeight;
 let allCards = document.querySelectorAll('.card');
 
-// window.addEventListener('resize', ()=>{
-//     windowHeight = innerHeight;
-//     animateCards();
-// });
+console.log(`${contHeight}, ${windowHeight}`)
+console.log(contHeight / mainCardHeight)
 
-window.addEventListener('load', ()=>{
-    animateCards()
-});
+setTimeout(()=>{
+    animateCards();
+}, 2000);
 
 function animateCards(){
     oddCards(cardsInOne);
@@ -65,9 +66,9 @@ function oddCards(odd){
 }
 
 function heightPixel(percentage){
-    return percentage / 100 * document.querySelector('.col').offsetHeight;
+    return percentage / 100 * contHeight;
 }
 
 setTimeout(()=>{
-    animationCont.style.scale = "4";
-},2200)
+    animationCont.style.scale = `${windowHeight / mainCardHeight * 1.1}`;
+},3900)

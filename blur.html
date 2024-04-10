@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blurring Animation</title>
+<style>
+    .black-div {
+        width: 200px;
+        height: 200px;
+        background-color: black;
+        animation: blurEffect 1s forwards; /* Apply the animation */
+    }
+
+    @keyframes blurEffect {
+        0% {
+            filter: blur(0px); /* Start with no blur */
+        }
+        100% {
+            filter: blur(10px); /* End with 10px blur */
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="black-div"></div>
+</body>
+</html>
