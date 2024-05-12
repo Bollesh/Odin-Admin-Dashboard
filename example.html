@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Centered Growing Div</title>
-  <link rel="stylesheet" href="styles.css">
-</head>
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deleteable Grid</title>
 <style>
-body, html {
-  height: 100%;
-  margin: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.centered-div {
-  width: 100vw;
-  height: 100vh;
-  /* max-width: 800px; */
-  /* padding: 20px; */
-  background-color: lightgray;
-  animation: grow 3s forwards; /* 3s is the duration of the animation, adjust as needed */
-}
-
-@keyframes grow {
-  from {
-    transform: scale(0);
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    transition: all 1s;
   }
-  to {
-    transform: scale(1);
+  .grid-item {
+    background-color: #ccc;
+    padding: 20px;
+    text-align: center;
+    transition: all 1s ease;
   }
-}
-
 </style>
-
+</head>
 <body>
-  <div class="centered-div">
-    <!-- Your content here -->
-    <p>This is a centered div that grows to fill up the screen.</p>
-  </div>
+
+<div class="grid">
+  <div class="grid-item" onclick="deleteItem(this)">1</div>
+  <div class="grid-item" onclick="deleteItem(this)">2</div>
+  <div class="grid-item" onclick="deleteItem(this)">3</div>
+  <div class="grid-item" onclick="deleteItem(this)">4</div>
+  <div class="grid-item" onclick="deleteItem(this)">5</div>
+  <div class="grid-item" onclick="deleteItem(this)">6</div>
+  <div class="grid-item" onclick="deleteItem(this)">7</div>
+  <div class="grid-item" onclick="deleteItem(this)">8</div>
+  <div class="grid-item" onclick="deleteItem(this)">9</div>
+</div>
+
+<script>
+  function deleteItem(item) {
+    item.style.opacity = "0";
+    item.style.transform = `translateX(100px)`;
+    setTimeout(function() {
+      item.style.display = "none";
+    }, 1000);
+  }
+</script>
+
 </body>
 </html>

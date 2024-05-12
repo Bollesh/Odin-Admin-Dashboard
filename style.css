@@ -1,16 +1,49 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Roboto&display=swap');
-*{
-    font-family: Roboto;
-    box-sizing: border-box;
+@font-face{
+    font-family: Open-Sans;
+    src: url("fonts/Open_Sans/OpenSans-VariableFont_wdth\,wght.ttf")
 }
+
+@font-face{
+    font-family: Norse-Bold;
+    src: url("fonts/Norse-Bold.otf");
+}
+
+*{
+    box-sizing: border-box;
+    font-family: Open-Sans;
+}
+
+input, textarea{
+    outline: none;
+    border: none;
+}
+
+input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    margin: 0;
+    display: grid;
+    place-content: center;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+  }
 
 :root{
     --bodyColor: rgb(20,20,20);
+    --evenMain: 0px;
+    --evenAll: 0px;
+    --oddMain: 0px;
+    --oddAll: 0px;
+    --scale: 0;
+    --scaleDelay: 2.75s;
+    --mainCardHeight: 0;
+    --mainCardWidth: 0;
+    --mainImage: linear-gradient(150deg, #d81e5b 0%, #bf3695 100%);
 }
 
 body{
     margin: 0;
-    height: 100vh;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -25,7 +58,7 @@ h1, h2, h3, h4, h5, h6, p, ul, li{
     padding: 0;
 }
 
-.animationCont{
+/* .animationCont{
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -33,26 +66,41 @@ h1, h2, h3, h4, h5, h6, p, ul, li{
     align-items: center;
     gap: 40px;
     transition: transform 2s, scale 2s;
-}
+    overflow: hidden;
+    animation: contGrow 2s var(--scaleDelay) both;
+    will-change: scale;
+} */
 
-.card{
+/* .card{
     flex: 1;
     background-color: white;
-    transition: transform 1s;
-}
-
-.main{
-    background-image: url("images/jr-korpa-9XngoIpxcEo-unsplash.jpg");
-    background-size: 200% auto;
-    background-repeat: no-repeat;
     background-position: center;
-    image-rendering: optimizeQuality;
-    animation: mainGrow 2s;
-    animation-delay: 3.9s;
-    animation-fill-mode: forwards; 
-}
+    background-size: cover;
+    object-fit: contain;
+    transition: transform 1s;
+    will-change: transform;
+    overflow: hidden;
+} */
 
-.col{
+
+/* img{
+    will-change: scale;
+} */
+
+/* .main{
+    background-image: var(--mainImage);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    will-change: scale;
+    p{
+        font-family: Norse-Bold;
+    }
+} */
+
+
+/* .col{
     flex: 1;
     aspect-ratio: 1/3;
     display: flex;
@@ -68,17 +116,475 @@ h1, h2, h3, h4, h5, h6, p, ul, li{
     transform: translateY(100%);
 }
 
-.blur{
-    animation: blur 0.5s forwards;
+.col:nth-child(even) > .card:last-child{
+    animation: evenMain 1s cubic-bezier(.8,0,0.6,1) forwards, evenAll 2s 1s forwards;
+}
+
+.col:nth-child(odd) > .card:first-child{
+    animation: oddMain 1s cubic-bezier(.8,0,0.6,1) forwards, oddAll 2s 1s forwards;
+}
+
+@keyframes evenMain{
+    to{
+        transform: translateY(var(--evenMain));
+    }
+}
+
+@keyframes evenAll{
+    to{
+        transform: translateY(var(--evenAll));
+    }
+}
+
+@keyframes oddMain{
+    to{
+        transform: translateY(var(--oddMain));
+    }
+}
+
+@keyframes oddAll{
+    to{
+        transform: translateY(var(--oddAll));
+    }
 }
 
 @keyframes mainGrow{
     0%{
         background-size: 200% auto;
-        filter: blur(0);
     }
     100%{
         background-size: 120% auto;
-        filter: blur(0.5px);
     }
 }
+
+@keyframes contGrow{
+    to{
+        transform: scale(var(--scale));
+    }
+} */
+
+.noDisp{
+    display: none;
+}
+
+.mainPage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: var(--mainImage);
+    overflow: hidden;
+    transition: opacity 0.5s;
+}
+
+/* @keyframes mainShrink{
+    to{
+        transform: translateY(15vh) scale(0.15);
+    }
+}
+
+@keyframes mainExpand{
+    to{
+        transform: translateY(0) scale(1);
+    }
+}
+
+@keyframes mainMove{
+    0%{
+        background-position: 0px 0px;
+    }
+    40%{
+        background-position: 50% 50%;
+    }
+    40.0001%{
+        background-position: 100% 0px;
+    }
+    100%{
+        background-position: 0px 100%;
+    }
+} */
+
+.waves{
+    position: absolute;
+    bottom: -400px;
+    opacity: 0;
+    left: 0;
+    animation: wavesTransition 1s forwards;
+}
+
+@keyframes wavesTransition{
+    to{
+        bottom: -6px;
+        opacity: 1;
+    }
+}
+
+.wave, .wave2{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    bottom: -6px;
+    width: 12800px;
+    height: 400px;
+    transform: translate3d(0, 0, 0);
+    /* display: none; */
+    filter: brightness(0.8);
+}
+
+.wave{
+    z-index: 1;
+    background: url(images/otherwave.svg) repeat-x; 
+    animation: wave 40s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+  }
+
+.wave2{
+    height: 800px;
+    z-index: 0;
+    bottom: -100px;
+    background: url(images/otherwave-1.svg) repeat-x; 
+    animation: wave 20s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+}
+
+@keyframes wave {
+    0% {
+        margin-left: 0;
+    }
+    100% {
+        margin-left: -3200px;
+    }
+}
+
+.dboard{
+    height: 80%;
+    width: 90%;
+    display: grid;
+    grid-template: 0.75fr 8fr/ 1.5fr 7fr 2.4fr;
+    gap: 20px;
+    z-index: 1;
+    opacity: 0;
+    transform: translateY(-10%);
+    animation: dboard 0.75s 1s forwards;
+}
+
+@keyframes dboard{
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.board{
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 10px;
+    box-shadow: 0 0 10px white;
+}
+
+.sidebar{
+    grid-row: 1/3;
+    position: relative;
+}
+
+.tools{
+    grid-column: 2/4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 50px;
+}
+
+.title{ 
+    margin: 10px 10px;
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+}
+
+.title > img{
+    height: 56px;
+    filter: invert();
+}
+
+.options{
+    margin: 5vh 0 0 2vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+}
+
+.list > img, .credits > img, .messages > img, .projects > img, .settings > img, .searchBtn > img, .notif > img{
+    height: 36px;
+    filter: invert();
+}
+
+
+.list, .credits, .messages, .projects, .settings{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.list:hover, .credits:hover, .messages:hover, .projects:hover, .settings:hover{
+    text-shadow: 0 0 2px white;
+    filter: drop-shadow(0 0 0.5px white); 
+}
+
+.list:active, .credits:active, .messages:active, .projects:active, .settings:active, .add:active{
+    scale: 0.98;
+}
+
+.search{
+    height: 100%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.searchBox{
+    width: 36vw;
+    height: 80%;
+    border-radius: 50px;
+    background-color: rgba(255,255,255,0.1);
+    color: white;
+    box-shadow: inset 0 0 10px white;
+    padding: 0 20px;
+}
+
+.searchBtn, .notif{
+    height: 55px;
+    width: 55px;
+    background-color: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    display: grid;
+    place-content: center;
+    box-shadow: inset 0 0 5px white;
+}
+
+.append{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 80px 0;
+    gap: 20px;
+}
+
+.taskName, .taskDesc{
+    position: relative;
+}
+
+#taskName{
+    height: 36px;
+    width: 16vw;
+    background-color: transparent;
+    border: solid 2px white;
+    border-radius: 10px;
+    color: white;
+    transition: border 0.3s;
+    padding: 0 18px;
+    transition: box-shadow 0.3s, border 0.3s;
+}
+
+label[for="taskName"]{
+    position: absolute;
+    top: -30px;
+    left: 5px;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.taskDesc{
+    display: grid;
+}
+
+#taskDesc{
+    height: 20vh;
+    width: 16vw;
+    background-color: transparent;
+    border: solid 2px white;
+    color: white;
+    display: flex;
+    align-items: start;
+    margin: 10px 0 0 0;
+    border-radius: 10px;
+    padding: 10px;
+    transition: box-shadow 0.4s;
+}
+
+.dueByDate, .dueByTime{
+    background-color: transparent;
+    color: black;
+    border: solid 1px black;
+    filter: invert();
+    padding: 0 10px;
+    box-shadow: inset 0 0 5px black;
+    height: 5vh;
+    border-radius: 10px;
+}
+
+.dueByDate{
+    width: 10vw;
+}
+
+.dueByTime{
+    width: 5.6vw;
+}
+
+.priority{
+    display: flex;
+    flex-direction: column;
+    margin: 0 10vw 0 0;
+}
+
+.priority > div{
+    display: flex;
+    gap: 5px;
+}
+
+input[type="radio"]::before {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    transform: scale(0);
+    transition: 120ms transform ease-in-out;
+}
+  
+input[type="radio"]:checked::before {
+    transform: scale(1);
+}
+
+#urgent{
+    background-color: rgba(255,0,0,0.3);
+    box-shadow: inset 0 0 5px red;
+}
+
+#urgent::before{
+    box-shadow: inset 1em 1em red;
+}
+
+#eh{
+    background-color: rgba(255,255, 0, 0.3);
+    box-shadow: inset 0 0 5px yellow;
+}
+
+#eh::before{
+    box-shadow: inset 1em 1em yellow;
+}
+
+#later{
+    background-color: rgba(100,255,100, 0.3);
+    box-shadow: inset 0 0 5px rgb(100,255,100);
+}
+
+#later::before{
+    box-shadow: inset 1em 1em rgb(100,255,100);
+}
+
+.add{
+    height: 60px;
+    width: 100px;
+    background-color: transparent;
+    color: white;
+    border: solid 2px red;
+    border-radius: 10px;
+    box-shadow: inset 0 0 10px red;
+    cursor: pointer;
+    transition: all 0.5s;
+}
+
+.add:disabled{
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
+.article{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 60px;
+    gap: 60px;
+    overflow-y: scroll;
+}
+
+::-webkit-scrollbar{
+    width: 5px;
+}
+::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: white;
+    border-radius: 50px;
+}
+
+.toDoCard{
+    position: relative;
+    padding: 10px;
+    height: 300px;
+    width: 250px;
+    border: solid 2px white;
+    border-radius: 10px;
+    /* border-image: linear-gradient(30deg, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%) 1 round; */
+    box-shadow: inset 0 0 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    gap: 20px;
+    padding: 30px 10px;
+    transition: all 0.5s;
+}
+
+.P1 > .done{
+    background-color: rgba(255,0,0,0.5);
+}
+
+.P2 > .done{
+    background-color: rgba(200,200, 0, 1);
+    svg{
+        fill: black;
+    }
+}
+
+.P3 > .done{
+    background-color: rgba(100,255,100, 0.5);
+}
+
+.toDoCard > p{
+    font-size: 16px;
+}
+
+.done{
+    position: absolute;
+    height: 30px;
+    width: 30px;
+    top: 10px;
+    background-color: transparent;
+    border: solid 2px white;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+}
+
+.done>svg{
+    fill: white;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.done:hover{
+    svg{
+        opacity: 1;
+    }
+}
+.dueby{
+    position: absolute;
+    bottom: 10px;
+}
+
+/* .two > .card{
+    background: var(--randomImage);
+    background-position: center;
+    background-repeat: no-repeat;
+} */
